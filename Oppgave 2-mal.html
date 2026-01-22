@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Oppgave 3</title>
+		<meta charset="utf-8" />
+		
+    </head>
+
+    <body>
+        
+
+        <h2>Fartskontroll</h2>
+
+        Oppgi fart: <input type="number" id="fart">
+        <br><br>
+        <button type="button" id="registrer">Registrer</button>
+        <br><br>
+        Melding: <input type="text" id="melding">
+        Avvik:   <input type="text" id="avvik">
+        <br><br><br><br>
+        <input type="button" id="visStatistikk" value="Vis statistikk">
+        <p id="utskrift"></p>
+        <br><br>
+        <input type="button" id="reset" value="Reset statistikk">
+        <script>
+
+            antallBiler = 0;
+            litenBot = 0;
+            storBot = 0;
+            brudd = 0;
+            console.clear();
+
+            document.getElementById("registrer").onclick = registrer;
+            document.getElementById("visStatistikk").onclick = visStatistikk;
+            document.getElementById("reset").onclick = resetStatistikk;
+            function registrer() {
+                var fart = document.getElementById("fart").value;
+                    if (fart <= 80) {
+                        document.getElementById("melding").value = "Lovlig fart";
+                        document.getElementById("avvik").value = fart - 80;
+                        antallBiler = antallBiler + 1;                
+                    }
+                    else if (fart >= 81 && fart <= 90) {
+                        document.getElementById("melding").value = "1500 kr i bot";
+                        document.getElementById("avvik").value = fart - 80;
+                        antallBiler = antallBiler + 1;
+                        litenBot = litenBot + 1500;
+                        brudd = brudd + 1;
+                    }
+                    else if (fart > 90) {
+                        document.getElementById("melding").value = "3000 kr i bot";
+                        document.getElementById("avvik").value = fart - 80;
+                        antallBiler = antallBiler + 1;
+                        storBot = storBot + 3000;
+                        brudd = brudd + 1;
+                    }
+            }
+            function visStatistikk() {
+                document.getElementById("utskrift").innerHTML = "Antall registrerte biler: " + antallBiler + " antall brudd: " + brudd + " Samlet bot: " + (litenBot + storBot);
+            }
+
+            function resetStatistikk() {
+                antallBiler = 0;
+                litenBot = 0;
+                storBot = 0;
+                brudd = 0;
+                document.getElementById("utskrift").innerHTML = "Antall registrerte biler: " + antallBiler + " antall brudd: " + brudd + " Samlet bot: " + (litenBot + storBot);
+            }
+
+
+
+ 
+
+
+            
+            
+
+					
+
+                
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
